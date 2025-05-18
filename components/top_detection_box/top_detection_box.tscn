@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8sxx4fvyfj3t"]
+
+[ext_resource type="Script" uid="uid://bh8kiteugnpuh" path="res://components/top_detection_box/script/top_detection_box.gd" id="1_a78ih"]
+
+[node name="TopDetectionBox" type="Area2D" groups=["TopDetectionBox"]]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_a78ih")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

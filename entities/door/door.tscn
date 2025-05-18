@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwlhe2w8rl0qy"]
+[gd_scene load_steps=18 format=3 uid="uid://cwlhe2w8rl0qy"]
 
+[ext_resource type="Script" uid="uid://bmgyuss7m0n65" path="res://entities/door/script/door.gd" id="1_bfv6c"]
 [ext_resource type="Texture2D" uid="uid://blb4ofslg1dra" path="res://assets/door_sprite_sheet.png" id="1_ik14b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eickf"]
@@ -120,6 +121,9 @@ animations = [{
 size = Vector2(28, 47)
 
 [node name="Door" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_bfv6c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hjc4s")
@@ -129,3 +133,6 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_35hbi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqf6c1sj25kjw"]
+
+[ext_resource type="Script" uid="uid://5rksd8aie11j" path="res://components/bottom_detection_box/script/bottom_detection_box.gd" id="1_hn4l8"]
+
+[node name="BottomDetectionBox" type="Area2D" groups=["BottomDetectionBox"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_hn4l8")

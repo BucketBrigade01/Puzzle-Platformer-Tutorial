@@ -1,6 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://c18gctkjt08be"]
+[gd_scene load_steps=22 format=3 uid="uid://c18gctkjt08be"]
 
+[ext_resource type="Script" uid="uid://5ab7raafy6gm" path="res://entities/players/script/player.gd" id="1_dohes"]
 [ext_resource type="Texture2D" uid="uid://d1rcy1nogu43p" path="res://assets/player_sprite_sheet.png" id="1_ra5tm"]
+[ext_resource type="PackedScene" uid="uid://dqf6c1sj25kjw" path="res://components/bottom_detection_box/bottom_detection_box.tscn" id="3_ou4rr"]
+[ext_resource type="PackedScene" uid="uid://c8sxx4fvyfj3t" path="res://components/top_detection_box/top_detection_box.tscn" id="4_vqh0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dohes"]
 size = Vector2(14, 25)
@@ -125,9 +128,16 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xw15"]
+size = Vector2(14, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxtag"]
+size = Vector2(10, 1)
+
 [node name="Player1" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
+script = ExtResource("1_dohes")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
@@ -137,3 +147,25 @@ shape = SubResource("RectangleShape2D_dohes")
 sprite_frames = SubResource("SpriteFrames_b7ew2")
 animation = &"fade"
 autoplay = "idle"
+
+[node name="BottomDetectionBox" parent="." instance=ExtResource("3_ou4rr")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomDetectionBox"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_0xw15")
+debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="TopDetectionBox" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_vqh0c")]
+player = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopDetectionBox"]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_xxtag")
+debug_color = Color(0, 0, 0.701961, 0.419608)
+
+[node name="state" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -23)
