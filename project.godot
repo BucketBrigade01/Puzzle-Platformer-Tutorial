@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="dos_mentes_tutorial"
-run/main_scene="res://stages/levels/level_1/level_1.tscn"
+run/main_scene="uid://b2jqq30rt6am6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://utilities/global.gd"
 
 [display]
 

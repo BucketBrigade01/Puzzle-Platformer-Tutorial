@@ -19,6 +19,9 @@ var partner : Player = null
 var direction : float
 var can_launch : bool = false
 
+func _ready():
+	Global.connect("door_opened", fade_player)
+
 func _physics_process(delta : float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -33,7 +36,6 @@ func _physics_process(delta : float) -> void:
 	
 	move_and_slide()
 	update_animation()
-	$state.text = StackState.find_key(current_state)
 
 func process_normal_movement(delta : float) -> void:
 	direction = Input.get_axis("left", "right")
@@ -105,3 +107,11 @@ func update_animation() -> void:
 	
 	if direction != 0:
 		animation_sprite.flip_h = direction == -1.0
+
+func fade_player() -> void:
+	set_physics_process(false)
+	animation_sprite.play("fade")
+
+func _on_animated_sprite_2d_animation_finished():
+	if animation_sprite.animation == "fade":
+		Global.emit_signal("player_faded")

@@ -75,6 +75,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l6uuk")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"fade",
@@ -148,7 +151,7 @@ shape = SubResource("RectangleShape2D_t7l1y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bjt63")
-animation = &"idle"
+animation = &"fade"
 autoplay = "idle"
 
 [node name="BottomDetectionBox" parent="." instance=ExtResource("3_2mrob")]
